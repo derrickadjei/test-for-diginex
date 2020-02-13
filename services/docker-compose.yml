@@ -1,0 +1,17 @@
+#docker compose file to run docker files within the firstservice and second service directories 
+version: "3"
+services:
+  firstservice:
+    build:
+       context: ./secondservice
+    container_name: uservice1
+    depends_on:
+      - secondservice
+    ports: 
+      - 8081:80
+  secondservice:
+    build:
+      context: ./firstservice
+    container_name: uservice2
+    ports: 
+      - 8080:80
